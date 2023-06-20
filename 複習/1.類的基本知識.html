@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 創建一個Person類
+    class Person {
+      // 類中的constructor函數，就是構造函數
+      constructor(name, age) {
+        // 向Person類中添加屬性
+        this.name = name;
+        this.age = age;
+      }
+      // 向Person的原型中添加方法
+      speak() {
+        // speak 方法放到了哪？ --> Person的原型上 
+        console.log(`我是${this.name}，我今年${this.age}歲了`);
+      }
+    }
+    
+    // 創建一個Student類
+    class Student extends Person {
+      constructor(name, age, grade) {
+        // 通過super關鍵字，可以快速的創建父類的實例
+        super(name, age);
+        this.grade = grade;
+      }
+      // 重寫從父類繼承過來的speak方法
+      speak(){
+        console.log(`我是${this.name}，我今年${this.age}歲了，我在讀${this.grade}`);
+      }
+    }
+    
+    // 創建一個Person的實例
+    const p1 = new Person('Jack', 18);
+    const p2 = new Person('Rose', 17);
+    const s1 = new Student('Tom', 20, '大三');
+    
+    // 測試代碼
+    console.log(p1);
+    console.log(p2);
+    console.log(s1);
+    s1.speak();
+  </script>
+</body>
+</html>

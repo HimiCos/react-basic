@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>1.使用jsx創建虛擬DOM</title>
+</head>
+<body>
+  <!-- 準備好一個“容器” -->
+  <div id="test"></div>
+
+  <!-- 引入react核心庫 -->
+  <script src="../js/react.development.js"></script>
+  <!-- 引入react-dom，用於支持react操作DOM -->
+  <script src="../js/react-dom.development.js"></script>
+  <!-- 引入babel，用於將JSX語法轉為js語法 -->
+  <script src="../js/babel.min.js"></script>
+
+  <script type="text/babel"> /* 此處一定要寫babel */
+    // 1. 創建虛擬DOM元素
+    const VDOM = (
+      <h1 id="title">
+        <span>hello react</span>
+      </h1>
+    );
+    // 2. 渲染虛擬DOM元素到頁面
+    ReactDOM.render(VDOM, document.getElementById('test'));
+  </script>
+</body>
+</html>
