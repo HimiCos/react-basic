@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>1.函數式組件</title>
+</head>
+<body>
+  <!-- 準備好一個“容器” -->
+  <div id="test"></div>
+  
+  <!-- 引入react核心庫 -->
+  <script src="../js/react.development.js"></script>
+  <!-- 引入react-dom，用於支持react操作DOM -->
+  <script src="../js/react-dom.development.js"></script>
+  <!-- 引入babel，用於將JSX語法轉為js語法 -->
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    // 1. 創建类式組件
+    class MyComponent extends React.Component{
+      render() {
+        return (
+          <h1>Hello, World!</h1>
+        );
+      }
+    }
+    // 2. 渲染組件到頁面
+    // ReactDOM.render(組件, 容器);
+    ReactDOM.render(<MyComponent/>, document.getElementById('test'))
+  </script>
+</body>
+</html>

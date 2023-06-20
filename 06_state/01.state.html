@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>1.函數式組件</title>
+</head>
+<body>
+  <!-- 準備好一個“容器” -->
+  <div id="test"></div>
+  
+  <!-- 引入react核心庫 -->
+  <script src="../js/react.development.js"></script>
+  <!-- 引入react-dom，用於支持react操作DOM -->
+  <script src="../js/react-dom.development.js"></script>
+  <!-- 引入babel，用於將JSX語法轉為js語法 -->
+  <script src="../js/babel.min.js"></script>
+  
+  <script type="text/babel">
+    // 1. 創建类式組件
+    class Weather extends React.Component{
+      constructor(props) {
+        super(props);
+        // 初始化狀態
+        this.state = {
+          isHot: true,
+          wind: '微风'
+        }
+        // 解决this指向问题
+        this.changeWeather = this.changeWeather.bind(this)
+      }
+      render() {
+        // 读取状态数据
+        const {isHot, wind} = this.state;
+        return (
+          <h1 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'}, {wind}</h1>
+        );
+      }
+      changeWeather(){
+        // 状态不可直接更改, 借助setState API进行修改
+        this.setState({
+          isHot: !this.state.isHot
+        });
+      }
+    }
+    // 2. 渲染組件到頁面
+    // ReactDOM.render(組件, 容器);
+    ReactDOM.render(<Weather/>, document.getElementById('test'))
+  </script>
+</body>
+</html>
