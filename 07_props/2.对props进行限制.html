@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2.对props进行限制</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <div id="test2"></div>
+  
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  
+  <script type="text/babel">
+    class Person extends React.Component{
+      // render函数
+      render() {
+        const {name, sex, age} = this.props;
+        return (
+          <ul>
+            <li>姓名: {name}</li>
+            <li>性別: {sex}</li>
+            <li>年齡: {age+1}</li>
+          </ul>
+        );
+      }
+    }
+    // 对标签属性进行 类型、必要性 限制
+    Person.propTypes = {
+      name: PropTypes.string.isRequired,
+      sex: PropTypes.string,
+      age: PropTypes.number,
+      speak: PropTypes.func
+    }
+    // 指定默认标签属性值
+    Person.defaultProps = {
+      sex: '未知',
+      age: 18
+    }
+    const person = {name: "emma", sex: "女", age: 21}
+    ReactDOM.render(<Person name = "tom" sex = "男" age = {18}/>, document.getElementById('test1'))
+    ReactDOM.render(<Person {...person} speak={speak}/>, document.getElementById('test2'))
+    function speak(){
+      console.log('hello');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>4.函数式组件使用props</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <div id="test2"></div>
+  
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  
+  <script type="text/babel">
+    // 函数式组件
+    function Person(props) {
+      const {name, sex, age} = props;
+      return (
+        <ul>
+          <li>姓名: {name}</li>
+          <li>性別: {sex}</li>
+          <li>年齡: {age+1}</li>
+        </ul>
+      );
+    }
+    // 对标签属性进行 类型、必要性 限制
+    Person.propTypes = {
+      name: PropTypes.string.isRequired,
+      sex: PropTypes.string,
+      age: PropTypes.number,
+      speak: PropTypes.func
+    }
+    // 指定默认标签属性值
+    Person.defaultProps = {
+      sex: '男',
+      age: 18
+    }
+    
+    // 渲染组件到页面
+    ReactDOM.render(<Person name="Himicos"/>, document.getElementById('test1'))
+  </script>
+</body>
+</html>
