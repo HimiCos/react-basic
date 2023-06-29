@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>1.字符串形式的ref</title>
+  <title>4.createRef</title>
 </head>
 <body>
   <div id="test1"></div>
@@ -15,21 +15,17 @@
   
   <script type="text/babel">
     class Person extends React.Component{
+      input1 = React.createRef()
       showData = () => {
-        const {input1} = this.refs
-        alert(input1.value);
-      }
-      blurData = () => {
-        const {input2} = this.refs
-        alert(input2.value);
+        const {input1} = this
+        alert(input1.current.value);
       }
       // render函数
       render() {
         return (
           <div>
-            <input ref="input1" />&nbsp;
+            <input ref={ this.input1 } />&nbsp;
             <button onClick={this.showData}>点击显示</button>&nbsp;
-            <input ref="input2" onBlur={this.blurData} placeholder="失去焦点提示信息"/>
           </div>
         );
       }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>1.字符串形式的ref</title>
+  <title>2.回調函數形式的ref</title>
 </head>
 <body>
   <div id="test1"></div>
@@ -16,20 +16,20 @@
   <script type="text/babel">
     class Person extends React.Component{
       showData = () => {
-        const {input1} = this.refs
+        const {input1} = this
         alert(input1.value);
       }
       blurData = () => {
-        const {input2} = this.refs
+        const {input2} = this
         alert(input2.value);
       }
       // render函数
       render() {
         return (
           <div>
-            <input ref="input1" />&nbsp;
+            <input ref={ c => this.input1 = c } />&nbsp;
             <button onClick={this.showData}>点击显示</button>&nbsp;
-            <input ref="input2" onBlur={this.blurData} placeholder="失去焦点提示信息"/>
+            <input ref={ c => this.input2 = c } onBlur={this.blurData} placeholder="失去焦点提示信息"/>
           </div>
         );
       }
