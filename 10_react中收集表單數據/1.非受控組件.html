@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>1.非受控組件</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <div id="test2"></div>
+  
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  
+  <script type="text/babel">
+    class Login extends React.Component{
+      login = (event) => {
+        // 阻止表單提交
+        event.preventDefault()
+        const {username, password} = this
+        alert(`帳號：${username.value}，密碼：${password.value}`)
+      }
+      // render函数
+      render() {
+        return (
+          <form action="http://www.google.com" onSubmit={this.login}>
+            帳號：<input ref={c => this.username = c} type="text" name="username"/>&nbsp;
+            密碼：<input ref={c => this.password = c} type="password" name="password"/>
+            <button>登入</button>
+          </form>
+        );
+      }
+    }
+
+    ReactDOM.render(<Login/>, document.getElementById('test1'))
+  </script>
+</body>
+</html>
