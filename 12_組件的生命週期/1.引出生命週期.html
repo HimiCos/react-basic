@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>1.引出生命週期</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <div id="test2"></div>
+  
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  
+  <script type="text/babel">
+    class Life extends React.Component{
+      state = {
+        opacity: 1
+      }
+      death = () => {
+        // 卸載組件
+        ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
+      }
+      // 組件掛載完成
+      componentDidMount(){
+        // 開啟定時器
+        this.timer = setInterval(() => {
+          let {opacity} = this.state
+          opacity -= 0.1
+          if (opacity <= 0) opacity = 1
+          this.setState({opacity})
+        }, 200);
+      }
+      // 組件卸載之前
+      componentWillUnmount(){
+        // 清空定時器
+        clearInterval(this.timer)
+      }
+      // render函数
+      render() {
+        return (
+          <div>
+            <h2 style={{ opacity:this.state.opacity }}>React學不會怎麼辦</h2>
+            <button onClick={this.death}>不學了</button>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<Life/>, document.getElementById('test1'))
+  </script>
+</body>
+</html>
