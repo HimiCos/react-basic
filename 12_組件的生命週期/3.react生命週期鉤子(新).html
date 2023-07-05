@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3.react生命週期鉤子(新)</title>
+</head>
+<body>
+  <div id="test"></div>
+  
+  <script src="../js/17.0.1/react.development.js"></script>
+  <script src="../js/17.0.1/react-dom.development.js"></script>
+  <script src="../js/17.0.1/babel.min.js"></script>
+  
+  <script type="text/babel">
+    class Count extends React.Component{
+      state = {
+        count: 0
+      }
+      addCount = () => {
+        const {count} = this.state
+        this.setState({count: count+1})
+      }
+      death = () => {
+        ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+      }
+      // 強制更新
+      force = () => {
+        this.forceUpdate()
+      }
+      // 組件將要掛載時
+      UNSAFE_componentWillMount(){
+        console.log('Count---componentWillMount');
+      }
+      // 組件掛載完成後
+      componentDidMount(){
+        console.log('Count---componentDidMount');
+      }
+      // 組件將要卸載時
+      componentWillUnmount(){
+        console.log('Count---componentWillUnmount');
+      }
+      // 組件是否更新
+      shouldComponentUpdate(){
+        console.log('Count---shouldComponentUpdate');
+        return true
+      }
+      // 組件將要更新時
+      UNSAFE_componentWillUpdate(){
+        console.log('Count---componentWillUpdate');
+      }
+      // 組件更新完成後
+      componentDidUpdate(){
+        console.log('Count---componentDidUpdate');
+      }
+      // 渲染組件
+      render() {
+        const {count} = this.state
+        console.log('Count---render');
+        return (
+          <div>
+            <h1>當前求和為: {count}</h1>
+            <button onClick={this.addCount}>點我數值+1</button>&nbsp;
+            <button onClick={this.death}>卸載組件</button>&nbsp;
+            <button onClick={this.force}>強制更新</button>
+          </div>
+        );
+      }
+    }
+    class A extends React.Component{
+      // 初始化狀態
+      state = {
+        carName: '奔馳'
+      }
+      // 改變車名
+      changeCar = () => {
+        const {carName} = this.state
+        this.setState({carName:'奧拓'})
+      }
+      render() {
+        return (
+          <div>
+            <h1>我是A組件</h1>
+            <button onClick={this.changeCar}>換車名</button>
+            <B carName={this.state.carName}/>
+          </div>
+        )
+      }
+    }
+    class B extends React.Component{
+      UNSAFE_componentWillReceiveProps(props){
+        console.log('B---componentWillReceiveProps',props);
+      }
+      render() {
+        console.log('B---render');
+        return (
+          <div>
+            <h2>我是B組件, 我收到的車名: {this.props.carName}</h2>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<A/>, document.getElementById('test'))
+  </script>
+</body>
+</html>
