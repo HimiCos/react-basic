@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2_key的作用</title>
+</head>
+<body>
+  <div id="persons"></div>
+  
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  
+  <script type="text/babel">
+    class Person extends React.Component{
+      
+      state = {
+        persons:[
+          {id: '1', name: 'tom', age: 18},
+          {id: '2', name: 'jerry', age: 19},
+        ]
+      }
+
+      render() {
+        return (
+          <div>
+            <h2>展示人員信息</h2>
+            <button onClick={this.addWang}>添加一個小王</button>
+            <ul>
+              {
+                this.state.persons.map((p) => {
+                  return <li key={p.id}>{p.name}---{p.age}<input type="text"/></li>
+                })
+              }
+            </ul>
+          </div>
+        )
+      }
+      addWang = () => {
+        const {persons} = this.state
+        const p = {id: persons.length+1, name: 'wang', age: 20}
+        this.setState({persons: [p, ...persons]})
+      }
+    }
+    ReactDOM.render(<Person/>, document.getElementById('persons'))
+  </script>
+</body>
+</html>
