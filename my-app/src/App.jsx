@@ -1,16 +1,9 @@
-// 創建外殼組件app
-import React, {Component} from 'react';
-import Hello from './component/Hello';
+import React, { Component } from 'react'
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <div>
-        <Hello/>
-      </div>
-    );
+      <div>App</div>
+    )
   }
 }
-
-// 暴露app組件
-export default App;
