@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
+import Header from './component/Header'
+import List from './component/List'
+import './App.css'
 
 export default class App extends Component {
   render() {
     return (
-      <div>App</div>
+      <div className="container">
+        <Header/>
+        <List/>
+      </div>
     )
   }
 }
