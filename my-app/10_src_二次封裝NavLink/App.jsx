@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { NavLink, Route } from 'react-router-dom'
 import About from './pages/About'
 import Home from './pages/Home'
 import Header from './components/Header'
@@ -24,11 +24,8 @@ export default class App extends Component {
           <div className="col-xs-6">
             <div className="panel">
               <div className="panel-body">
-                <Switch>
-                  <Route path="/about" component={About}/>
-                  <Route path="/home" component={Home}/>
-                  <Redirect to="/about"/>
-                </Switch>
+                <Route path="/about" component={About}/>
+                <Route path="/home" component={Home}/>
               </div>
             </div>
           </div>
