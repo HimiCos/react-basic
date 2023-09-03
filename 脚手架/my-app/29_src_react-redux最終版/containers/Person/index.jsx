@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {createAddPersonAction} from '../../redux/actions/person'
+import { addPerson } from '../../redux/actions/person'
 
 class Person extends Component {
   addPerson = () => {
@@ -33,6 +33,11 @@ class Person extends Component {
 }
 
 export default connect(
-  state => ({persons:state.persons, count:state.count}),
-  {addPerson: createAddPersonAction}
+  state => ({
+    persons:state.persons,
+    count:state.count
+  }),
+  {
+    addPerson
+  }
 )(Person)

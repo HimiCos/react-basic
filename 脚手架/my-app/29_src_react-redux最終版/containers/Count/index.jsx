@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux';
 // 引入action
 import {
-  createIncrementAction,
-  createDecrementAction,
-  createIncrementAsyncAction
+  increment,
+  decrement,
+  incrementAsync
 } from '../../redux/actions/count';
 
 // 定義UI組件
@@ -54,11 +54,14 @@ class Count extends Component {
 // 定義容器組件
 export default connect(
   // 映射狀態
-  state => ({count:state.count, personCount:state.persons.length}),
-  // 映射操作狀態的方法
+  state => ({
+    count:state.count,
+    personCount:state.persons.length
+  }),
+  // 映射操作狀態的action
   {
-    increment:createIncrementAction,
-    decrement:createDecrementAction,
-    incrementAsync:createIncrementAsyncAction,
+    increment,
+    decrement,
+    incrementAsync,
   }
 )(Count)
