@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import Demo from './components/6_optimize_PureComponent'
 
-export default class App extends Component {
+export default class Demo extends Component {
   render() {
     return (
       <Fragment>
-        <Demo/>
+        <input type="text" />
+        <input type="text" />
       </Fragment>
     )
   }
