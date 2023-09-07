@@ -1,0 +1,14 @@
+.parent{
+  background-color: rgb(238, 177, 63);
+  padding: 10px;
+}
+.a{
+  background-color: rgb(238, 172, 172);
+  margin-top: 20px;
+  padding: 10px;
+}
+.b{
+  background-color: rgb(221, 120, 218);
+  margin-top: 20px;
+  padding: 10px;
+}
